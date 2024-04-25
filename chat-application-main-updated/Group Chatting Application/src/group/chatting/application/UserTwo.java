@@ -215,6 +215,8 @@ public class UserTwo implements ActionListener, Runnable {
         }
     }
 
+
+
     static void getMessage(JPanel jPanel, Box vertical, JPanel a1, JFrame f, String msg) {
         JPanel panel = jPanel;
 

@@ -7,7 +7,8 @@ import java.util.*;
 public class Server implements Runnable {
     
     Socket socket;
-    
+
+    static Map<Socket, String> socketToUsername = new HashMap<>();
     public static Vector client = new Vector();
     
     public Server (Socket socket) {
@@ -17,12 +18,17 @@ public class Server implements Runnable {
             e.printStackTrace();
         }
     }
-    
+
     public void run() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            
+
+            // Read the username from the client
+            String username = reader.readLine().trim();
+            socketToUsername.put(socket, username);
+
+
             client.add(writer);
             
             while(true) {

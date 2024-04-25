@@ -9,7 +9,6 @@ import java.io.*;
 import java.util.Calendar;
 
 public class UserOne implements ActionListener, Runnable {
-
     JTextField text;
     JPanel a1;
     static Box vertical = Box.createVerticalBox();
@@ -121,13 +120,35 @@ public class UserOne implements ActionListener, Runnable {
 
         f.setVisible(true);
 
-        try {
-            Socket socket = new Socket("localhost", 2003);
-            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        } catch (Exception e) {
-            e.printStackTrace();
+        String username = JOptionPane.showInputDialog(f, "Enter your username:");
+        String password = JOptionPane.showInputDialog(f, "Enter your password:");
+
+        // Authenticate the user
+        if (UserAuthentication.authenticate(username, password)) {
+            try {
+                Socket socket = new Socket("localhost", 2003);
+                writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                // Send the username to the server
+                writer.write(username);
+                writer.write("\r\n");
+                writer.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(f, "Invalid username or password.", "Authentication Failed", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
+//
+//        try {
+//            Socket socket = new Socket("localhost", 2003);
+//            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+//            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         user1Icon = new ImageIcon(ClassLoader.getSystemResource("icons/3.png"));
 
 }
@@ -214,6 +235,7 @@ public class UserOne implements ActionListener, Runnable {
                     continue;
                 }
 
+
                 getMessage(formatLabel(msg), vertical, a1, f, msg);
             }
         } catch (Exception e) {
@@ -273,7 +295,7 @@ public class UserOne implements ActionListener, Runnable {
         private String placeholder;
 
     public PlaceholderTextField(String placeholder) {
-            this.placeholder = placeholder;
+        this.placeholder = placeholder;
         }
 
         @Override
