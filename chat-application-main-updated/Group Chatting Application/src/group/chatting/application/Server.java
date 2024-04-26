@@ -34,7 +34,12 @@ public class Server implements Runnable {
             while(true) {
                 String data = reader.readLine().trim();
                 System.out.println("Received " + data);
-                
+
+                if (data.equals("/signout")) {
+                    handleSignOut(writer, socket);
+                    break;
+                }
+
                 for (int i = 0; i < client.size(); i++) {
                     try {
                         BufferedWriter bw = (BufferedWriter) client.get(i);
@@ -51,6 +56,16 @@ public class Server implements Runnable {
         }
     }
 
+    private void handleSignOut(BufferedWriter writer, Socket socket) {
+        try {
+            client.remove(writer);
+            String username = socketToUsername.remove(socket);
+            System.out.println(username + " has signed out.");
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         ServerSocket s = new ServerSocket(2003);

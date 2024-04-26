@@ -8,6 +8,7 @@ import java.net.*;
 import java.io.*;
 import java.util.Calendar;
 
+
 public class UserOne implements ActionListener, Runnable {
     JTextField text;
     JPanel a1;
@@ -19,14 +20,14 @@ public class UserOne implements ActionListener, Runnable {
 
     BufferedReader reader;
     BufferedWriter writer;
-    String name = "Kaleen Bhaiya";
+    String name = "Pravin";
 
-    UserOne() {
+    public UserOne() {
 
         f.setLayout(null);
 
         JPanel p1 = new JPanel();
-        p1.setBackground(new Color(7, 94, 84));
+        p1.setBackground(new Color(5, 35, 54));
         p1.setBounds(0, 0, 450, 70);
         p1.setLayout(null);
         f.add(p1);
@@ -40,6 +41,7 @@ public class UserOne implements ActionListener, Runnable {
 
         back.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent ae) {
+
                 System.exit(0);
             }
         });
@@ -78,7 +80,14 @@ public class UserOne implements ActionListener, Runnable {
         nameLabel.setFont(new Font("SAN_SERIF", Font.BOLD, 18));
         p1.add(nameLabel);
 
-        JLabel status = new JLabel("Kaleen, Guddu, Bablu, Sweety, IG Dubey, Shukla");
+        nameLabel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent ae) {
+                new InformationPanel();
+
+            }
+        });
+
+        JLabel status = new JLabel("Shriya, Sudtida, Pranjal, Pravin");
         status.setBounds(110, 35, 160, 18);
         status.setForeground(Color.WHITE);
         status.setFont(new Font("SAN_SERIF", Font.BOLD, 14));
@@ -107,8 +116,8 @@ public class UserOne implements ActionListener, Runnable {
 
         JButton send = new JButton("Send");
         send.setBounds(320, 655, 123, 40);
-        send.setBackground(new Color(7, 94, 84));
-        send.setForeground(Color.WHITE);
+        send.setBackground(new Color(36, 64, 75));
+//        send.setForeground(Color.WHITE);
         send.addActionListener(this);
         send.setFont(new Font("SAN_SERIF", Font.PLAIN, 16));
         f.add(send);
@@ -141,17 +150,10 @@ public class UserOne implements ActionListener, Runnable {
             JOptionPane.showMessageDialog(f, "Invalid username or password.", "Authentication Failed", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
-//
-//        try {
-//            Socket socket = new Socket("localhost", 2003);
-//            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-//            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
         user1Icon = new ImageIcon(ClassLoader.getSystemResource("icons/3.png"));
 
-}
+    }
 
     public void actionPerformed(ActionEvent ae) {
         try {
@@ -163,7 +165,7 @@ public class UserOne implements ActionListener, Runnable {
                 return; // Exit the method without sending the placeholder text or empty message
             }
 
-            System.out.println(" got message from ae");
+//            System.out.println(" got message from ae");
             String out =text.getText();
             flag1 = "1";
             // Clear the text field after sending the message
@@ -199,8 +201,11 @@ public class UserOne implements ActionListener, Runnable {
         }
     }
 
+
+
+
     public static JPanel formatLabel(String out) {
-        System.out.println(" got message from format label");
+//        System.out.println(" got message from format label");
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.WHITE);
@@ -208,7 +213,7 @@ public class UserOne implements ActionListener, Runnable {
 
         JLabel output = new JLabel( out);
         output.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        output.setBackground(new Color(37, 211, 102));
+        output.setBackground(new Color(32, 97, 121));
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));
 
@@ -224,6 +229,8 @@ public class UserOne implements ActionListener, Runnable {
 
         return panel;
     }
+
+
 
     public void run() {
         try {
@@ -244,32 +251,8 @@ public class UserOne implements ActionListener, Runnable {
     }
 
     static void getMessage(JPanel jPanel, Box vertical, JPanel a1, JFrame f, String msg) {
-//        JPanel panel = jPanel;
-//
-//        JPanel left = new JPanel(new BorderLayout());
-//        left.setBackground(Color.WHITE);
-//        left.add(panel, BorderLayout.LINE_START);
-//
-//        ImageIcon userIcon = new ImageIcon(ClassLoader.getSystemResource("icons/mirzapur.png"));
-//        Image scaledImage = userIcon.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-//
-//        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-//
-//// Use the scaled ImageIcon for the icon label
-//        JLabel iconLabel = new JLabel(scaledIcon);
-//        left.add(iconLabel, BorderLayout.LINE_START);
-//
-//        vertical.add(left);
-//
-//        //NEWLY ADDED
-//        a1.removeAll();
-//
-//        a1.add(vertical, BorderLayout.PAGE_START);
-//
-//        f.repaint();
-//        f.invalidate();
-//        f.validate();
-        System.out.println("got message from in get message");
+
+//        System.out.println("got message from in get message");
         JPanel panel = jPanel;
 
         JPanel left = new JPanel(new BorderLayout());

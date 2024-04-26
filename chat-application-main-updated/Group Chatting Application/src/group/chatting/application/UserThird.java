@@ -19,14 +19,14 @@ public class UserThird implements ActionListener, Runnable {
 
     BufferedReader reader;
     BufferedWriter writer;
-    String name = "Babblu Bhaiya";
+    String name = "Sudtida";
 
     UserThird() {
 
         f.setLayout(null);
 
         JPanel p1 = new JPanel();
-        p1.setBackground(new Color(7, 94, 84));
+        p1.setBackground(new Color(5, 35, 54));
         p1.setBounds(0, 0, 450, 70);
         p1.setLayout(null);
         f.add(p1);
@@ -78,7 +78,14 @@ public class UserThird implements ActionListener, Runnable {
         nameLabel.setFont(new Font("SAN_SERIF", Font.BOLD, 18));
         p1.add(nameLabel);
 
-        JLabel status = new JLabel("Bablu, Guddu, Kaleen, Sweety, IG Dubey, Shukla");
+        nameLabel.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent ae) {
+                new InformationPanel();
+
+            }
+        });
+
+        JLabel status = new JLabel("Pravin, Shriya, Pranjal, Sudtida");
         status.setBounds(110, 35, 160, 18);
         status.setForeground(Color.WHITE);
         status.setFont(new Font("SAN_SERIF", Font.BOLD, 14));
@@ -105,8 +112,8 @@ public class UserThird implements ActionListener, Runnable {
 
         JButton send = new JButton("Send");
         send.setBounds(320, 655, 123, 40);
-        send.setBackground(new Color(7, 94, 84));
-        send.setForeground(Color.WHITE);
+        send.setBackground(new Color(36, 64, 75));
+//        send.setForeground(Color.WHITE);
         send.addActionListener(this);
         send.setFont(new Font("SAN_SERIF", Font.PLAIN, 16));
         f.add(send);
@@ -118,13 +125,36 @@ public class UserThird implements ActionListener, Runnable {
 
         f.setVisible(true);
 
-        try {
-            Socket socket = new Socket("localhost", 2003);
-            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Prompt the user for username and password
+        String username = JOptionPane.showInputDialog(f, "Enter your username:");
+        String password = JOptionPane.showInputDialog(f, "Enter your password:");
+
+        // Authenticate the user
+        if (UserAuthentication.authenticate(username, password)) {
+            try {
+                Socket socket = new Socket("localhost", 2003);
+                writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                // Send the username to the server
+                writer.write(username);
+                writer.write("\r\n");
+                writer.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(f, "Invalid username or password.", "Authentication Failed", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
+
+//        try {
+//            Socket socket = new Socket("localhost", 2003);
+//            writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+//            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -178,7 +208,7 @@ public class UserThird implements ActionListener, Runnable {
 //        JLabel output = new JLabel("<html><p style=\"width: 150px\">" + out + "</p></html>");
         JLabel output = new JLabel(out);
         output.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        output.setBackground(new Color(37, 211, 102));
+        output.setBackground(new Color(32, 97, 121));
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));
 
