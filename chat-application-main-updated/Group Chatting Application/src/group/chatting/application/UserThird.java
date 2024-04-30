@@ -130,7 +130,6 @@ public class UserThird implements ActionListener, Runnable {
 
         f.setVisible(true);
 
-        // Prompt the user for username and password
         String username = JOptionPane.showInputDialog(f, "Enter your username:");
 
         JPasswordField passwordField = new JPasswordField();

@@ -145,7 +145,6 @@ public class UserOne implements ActionListener, Runnable {
 
         char[] passwordChars = passwordField.getPassword();
         String password = new String(passwordChars);
-//        String password = JOptionPane.showInputDialog(f, "Enter your password:");
 
         // Authenticate the user
         if (UserAuthentication.authenticate(username, password)) {
