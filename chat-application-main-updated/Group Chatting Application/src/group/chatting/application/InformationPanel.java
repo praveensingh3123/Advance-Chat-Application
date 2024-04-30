@@ -52,6 +52,8 @@ public class InformationPanel extends JFrame {
 
         addUserInfo(infoPanel, "icons/mirzapur.png", "Pranjal");
         infoPanel.add(createSeparator());
+        addUserInfo(infoPanel, "icons/mirzapur.png", "Shriya");
+        infoPanel.add(createSeparator());
 
         addUserInfo(infoPanel, "icons/mirzapur.png", "Sudtida");
 
