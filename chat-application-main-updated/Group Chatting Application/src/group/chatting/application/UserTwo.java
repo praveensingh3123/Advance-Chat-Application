@@ -132,9 +132,16 @@ public class UserTwo implements ActionListener, Runnable {
 
         // Prompt the user for username and password
         String username = JOptionPane.showInputDialog(f, "Enter your username:");
-        String password = JOptionPane.showInputDialog(f, "Enter your password:");
 
-        // Authenticate the user
+        JPasswordField passwordField = new JPasswordField();
+        int option = JOptionPane.showConfirmDialog(f, passwordField, "Enter your password:", JOptionPane.OK_CANCEL_OPTION);
+
+
+        char[] passwordChars = passwordField.getPassword();
+        String password = new String(passwordChars);
+//        String password = JOptionPane.showInputDialog(f, "Enter your password:");
+
+
         if (UserAuthentication.authenticate(username, password)) {
             try {
                 Socket socket = new Socket("localhost", 2003);
