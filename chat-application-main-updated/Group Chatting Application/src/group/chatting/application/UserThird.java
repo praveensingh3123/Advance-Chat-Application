@@ -72,7 +72,7 @@ public class UserThird implements ActionListener, Runnable {
         morevert.setBounds(420, 20, 10, 25);
         p1.add(morevert);
 
-        JLabel nameLabel = new JLabel("Mirzapur");
+        JLabel nameLabel = new JLabel("GroupChat");
         nameLabel.setBounds(110, 15, 100, 18);
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setFont(new Font("SAN_SERIF", Font.BOLD, 18));
@@ -85,7 +85,7 @@ public class UserThird implements ActionListener, Runnable {
             }
         });
 
-        JLabel status = new JLabel("Pravin, Shriya, Pranjal, Sudtida");
+        JLabel status = new JLabel("Praveen, Shriya, Pranjal, Sudtida");
         status.setBounds(110, 35, 160, 18);
         status.setForeground(Color.WHITE);
         status.setFont(new Font("SAN_SERIF", Font.BOLD, 14));
@@ -106,9 +106,14 @@ public class UserThird implements ActionListener, Runnable {
         f.add(scrollPane);  // Add the scroll pane to the frame instead of a1 directly
 
         text = new UserOne.PlaceholderTextField("Enter your message");
-        text.setBounds(5, 655, 310, 40);
+        text.setBounds(5, 655, 281, 40);
         text.setFont(new Font("SAN_SERIF", Font.PLAIN, 16));
         f.add(text);
+
+        JButton emojiButton = new JButton("\uD83D\uDE42");
+        emojiButton.setBounds(282, 655, 40, 40);
+        emojiButton.addActionListener(e -> new UserOne.EmojiPicker(f, text).setVisible(true));
+        f.add(emojiButton);
 
         JButton send = new JButton("Send");
         send.setBounds(320, 655, 123, 40);
@@ -207,7 +212,7 @@ public class UserThird implements ActionListener, Runnable {
 
 //        JLabel output = new JLabel("<html><p style=\"width: 150px\">" + out + "</p></html>");
         JLabel output = new JLabel(out);
-        output.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        output.setFont(Font.getFont("Segoe UI Emoji"));
         output.setBackground(new Color(32, 97, 121));
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));

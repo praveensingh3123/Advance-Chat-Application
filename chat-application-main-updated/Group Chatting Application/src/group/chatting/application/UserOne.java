@@ -74,7 +74,7 @@ public class UserOne implements ActionListener, Runnable {
         morevert.setBounds(420, 20, 10, 25);
         p1.add(morevert);
 
-        JLabel nameLabel = new JLabel("Mirzapur");
+        JLabel nameLabel = new JLabel("GroupChat");
         nameLabel.setBounds(110, 15, 100, 18);
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setFont(new Font("SAN_SERIF", Font.BOLD, 18));
@@ -87,7 +87,7 @@ public class UserOne implements ActionListener, Runnable {
             }
         });
 
-        JLabel status = new JLabel("Shriya, Sudtida, Pranjal, Pravin");
+        JLabel status = new JLabel("Shriya, Sudtida, Pranjal, Praveen");
         status.setBounds(110, 35, 160, 18);
         status.setForeground(Color.WHITE);
         status.setFont(new Font("SAN_SERIF", Font.BOLD, 14));
@@ -109,9 +109,17 @@ public class UserOne implements ActionListener, Runnable {
 
 
         text = new PlaceholderTextField("Enter your message");
-        text.setBounds(5, 655, 310, 40);
+        text.setBounds(5, 655, 281, 40);
         text.setFont(new Font("SAN_SERIF", Font.PLAIN, 16));
         f.add(text);
+
+        //Emoji
+        JButton emojiButton = new JButton("\uD83D\uDE42");
+        emojiButton.setBounds(282, 655, 40, 40);
+        emojiButton.addActionListener(e -> new EmojiPicker(f, text).setVisible(true));
+        f.add(emojiButton);
+        //Emoji end
+
 
 
         JButton send = new JButton("Send");
@@ -212,7 +220,7 @@ public class UserOne implements ActionListener, Runnable {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         JLabel output = new JLabel( out);
-        output.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        output.setFont(Font.getFont("Segoe UI Emoji"));
         output.setBackground(new Color(32, 97, 121));
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));
@@ -291,6 +299,32 @@ public class UserOne implements ActionListener, Runnable {
                 g2.drawString(placeholder, getInsets().left, g.getFontMetrics().getMaxAscent() + getInsets().top);
                 g2.dispose();
             }
+        }
+    }
+    static class EmojiPicker extends JDialog {
+        private static final String[] EMOJI_CODES = {
+                "\uD83D\uDE00", "\uD83D\uDE03", "\uD83D\uDE04", // Smileys
+                "\uD83D\uDE1D", "\uD83D\uDE0D", "\uD83D\uDE18", // Emotions
+                "❤", "\uD83D\uDC96", "\uD83C\uDF89"  // Miscellaneous
+        };
+
+        public EmojiPicker(JFrame parent, JTextField textField) {
+            super(parent, "Select Emoji", true);
+            setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            setSize(200, 200);
+            setLocationRelativeTo(parent);
+
+            JPanel emojiPanel = new JPanel(new GridLayout(3, 3));
+            for (String emojiCode : EMOJI_CODES) {
+                JButton emojiButton = new JButton(emojiCode);
+                emojiButton.addActionListener(e -> {
+                    textField.replaceSelection(emojiCode);
+                    dispose();
+                });
+                emojiPanel.add(emojiButton);
+            }
+
+            add(emojiPanel);
         }
     }
 

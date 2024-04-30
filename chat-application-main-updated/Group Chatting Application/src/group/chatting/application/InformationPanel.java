@@ -17,7 +17,7 @@ public class InformationPanel extends JFrame {
         infoPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Add group name label
-        JLabel groupNameLabel = new JLabel("Mirzapur");
+        JLabel groupNameLabel = new JLabel("GroupChat");
         groupNameLabel.setFont(new Font("Arial", Font.BOLD, 20));
         groupNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         infoPanel.add(groupNameLabel);
@@ -47,13 +47,15 @@ public class InformationPanel extends JFrame {
 
 
         // Add user information
-        addUserInfo(infoPanel, "icons/mirzapur.png", "Kaleen Bhaiya");
+        addUserInfo(infoPanel, "icons/mirzapur.png", "Praveen");
         infoPanel.add(createSeparator());
 
-        addUserInfo(infoPanel, "icons/mirzapur.png", "Guddu Bhaiya");
+        addUserInfo(infoPanel, "icons/mirzapur.png", "Pranjal");
+        infoPanel.add(createSeparator());
+        addUserInfo(infoPanel, "icons/mirzapur.png", "Shriya");
         infoPanel.add(createSeparator());
 
-        addUserInfo(infoPanel, "icons/mirzapur.png", "Babblu Bhaiya");
+        addUserInfo(infoPanel, "icons/mirzapur.png", "Sudtida");
 
 
         add(infoPanel, BorderLayout.CENTER);
