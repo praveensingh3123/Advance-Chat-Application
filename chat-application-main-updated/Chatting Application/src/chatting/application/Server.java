@@ -1,7 +1,11 @@
 package chatting.application;
 
+import javax.crypto.SecretKey;
 import javax.swing.*;
 import javax.swing.border.*;
+
+import group.chatting.application.EncryptionManager;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -120,7 +124,8 @@ public class Server implements ActionListener {
 
             a1.add(vertical, BorderLayout.PAGE_START);
 
-            dout.writeUTF(out);
+            String encryptedOutputMessage = EncryptionManager.encrypt(out, EncryptionManager.getInstance().secretKey);
+            dout.writeUTF(encryptedOutputMessage);
 
             text.setText("");
 
@@ -155,18 +160,29 @@ public class Server implements ActionListener {
         return panel;
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         new Server();
         
+        ServerSocket skt = null;
+        
         try {
-            ServerSocket skt = new ServerSocket(6001);
+            skt = new ServerSocket(6001);
             while(true) {
                 Socket s = skt.accept();
                 DataInputStream din = new DataInputStream(s.getInputStream());
                 dout = new DataOutputStream(s.getOutputStream());
                 
                 while(true) {
-                    String msg = din.readUTF();
+                    // Encrypted message received from client. 
+                    String encryptedMsg = din.readUTF();
+                    // Checks message is encrypted.
+                    // System.out.println("Encrypted Message (Client): " + encryptedMsg);
+                    
+                    SecretKey key = EncryptionManager.getInstance().secretKey;
+                    // Checks key being used or decryption.
+                    // System.out.println("Secret Key: " + key.toString());
+                    
+                    String msg = EncryptionManager.decrypt(encryptedMsg, key);
                     JPanel panel = formatLabel(msg);
                     
                     JPanel left = new JPanel(new BorderLayout());
@@ -177,6 +193,8 @@ public class Server implements ActionListener {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+        	skt.close();
         }
     }
 }
