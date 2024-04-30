@@ -2,7 +2,6 @@ package group.chatting.application;
 
 import java.util.Base64;
 import java.util.Base64.Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -11,7 +10,6 @@ import javax.crypto.spec.DESedeKeySpec;
 public class EncryptionManager  {
 	
 	private static EncryptionManager encryptionManager = null;
-	
 	public SecretKey secretKey;
 	private static Cipher cipher;
 	

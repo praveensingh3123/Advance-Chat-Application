@@ -121,7 +121,6 @@ public class UserOne implements ActionListener, Runnable {
         //Emoji end
 
 
-
         JButton send = new JButton("Send");
         send.setBounds(320, 655, 123, 40);
         send.setBackground(new Color(36, 64, 75));
@@ -171,18 +170,18 @@ public class UserOne implements ActionListener, Runnable {
 
     public void actionPerformed(ActionEvent ae) {
         try {
-            String message = text.getText().trim(); // Trim to remove leading/trailing whitespace
+            String message = text.getText().trim(); // I am doing Trim to remove leading/trailing whitespace it was giving error while reading message correctly
 
-            // Check if the message is empty after trimming
+
+            // Checking if the message is empty after trimming, since the we dont want to send empty message (it was sending latest message again and again)
             if (message.equals("Type a message...") || message.isEmpty()) {
                 JOptionPane.showMessageDialog(f, "Please enter a message before sending.", "Empty Message", JOptionPane.WARNING_MESSAGE);
                 return; // Exit the method without sending the placeholder text or empty message
             }
 
-//            System.out.println(" got message from ae");
             String out =text.getText();
             flag1 = "1";
-            // Clear the text field after sending the message
+            // Clearing the text field after sending the message
             text.setText("");
 
             JPanel p2 = formatLabel(out);
@@ -255,7 +254,6 @@ public class UserOne implements ActionListener, Runnable {
                     flag1 = "";
                     continue;
                 }
-
 
                 getMessage(formatLabel(msg), vertical, a1, f, msg);
             }
