@@ -110,6 +110,11 @@ public class UserThird implements ActionListener, Runnable {
         text.setFont(new Font("SAN_SERIF", Font.PLAIN, 16));
         f.add(text);
 
+        JButton emojiButton = new JButton("\uD83D\uDE42");
+        emojiButton.setBounds(282, 655, 40, 40);
+        emojiButton.addActionListener(e -> new UserOne.EmojiPicker(f, text).setVisible(true));
+        f.add(emojiButton);
+
         JButton send = new JButton("Send");
         send.setBounds(320, 655, 123, 40);
         send.setBackground(new Color(36, 64, 75));
@@ -207,7 +212,7 @@ public class UserThird implements ActionListener, Runnable {
 
 //        JLabel output = new JLabel("<html><p style=\"width: 150px\">" + out + "</p></html>");
         JLabel output = new JLabel(out);
-        output.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        output.setFont(Font.getFont("Segoe UI Emoji"));
         output.setBackground(new Color(32, 97, 121));
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));
