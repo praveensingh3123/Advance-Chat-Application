@@ -44,7 +44,7 @@ public class UserThird implements ActionListener, Runnable {
             }
         });
 
-        ImageIcon i4 = new ImageIcon(ClassLoader.getSystemResource("icons/mirzapur.png"));
+        ImageIcon i4 = new ImageIcon(ClassLoader.getSystemResource("icons/group-chat-logo.png"));
         Image i5 = i4.getImage().getScaledInstance(60,60, Image.SCALE_DEFAULT);
         ImageIcon i6 = new ImageIcon(i5);
         JLabel profile = new JLabel(i6);
