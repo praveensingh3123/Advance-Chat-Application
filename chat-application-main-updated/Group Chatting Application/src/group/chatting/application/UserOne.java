@@ -179,7 +179,7 @@ public class UserOne implements ActionListener, Runnable {
                 return; // Exit the method without sending the placeholder text or empty message
             }
 
-            String out =text.getText();
+            String out = "<html><p>" + name + "</p><p>" + text.getText() + "</p></html>";
             flag1 = "1";
             // Clearing the text field after sending the message
             text.setText("");
@@ -227,6 +227,7 @@ public class UserOne implements ActionListener, Runnable {
         JLabel output = new JLabel( out);
         output.setFont(Font.getFont("Segoe UI Emoji"));
         output.setBackground(new Color(32, 97, 121));
+        output.setForeground(Color.WHITE);
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));
 

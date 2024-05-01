@@ -177,7 +177,7 @@ public class UserThird implements ActionListener, Runnable {
             }
 
 
-            String out = text.getText();
+            String out = "<html><p>" + name + "</p><p>" + text.getText() + "</p></html>";
             flag3 = "3";
             JPanel p2 = formatLabel(out);
 
@@ -218,6 +218,7 @@ public class UserThird implements ActionListener, Runnable {
         JLabel output = new JLabel(out);
         output.setFont(Font.getFont("Segoe UI Emoji"));
         output.setBackground(new Color(32, 97, 121));
+        output.setForeground(Color.WHITE);
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));
 
