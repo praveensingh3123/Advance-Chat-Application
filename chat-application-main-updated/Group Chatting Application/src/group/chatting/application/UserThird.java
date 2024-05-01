@@ -8,25 +8,24 @@ import java.text.*;
 import java.net.*;
 import java.io.*;
 
-public class UserThird implements ActionListener, Runnable {
-
+public class UserTwo implements ActionListener, Runnable {
     JTextField text;
     JPanel a1;
     static Box vertical = Box.createVerticalBox();
     static JFrame f = new JFrame();
     static DataOutputStream dout;
-    String flag3 = "";
+    String flag2 = "";
 
     BufferedReader reader;
     BufferedWriter writer;
-    String name = "Sudtida";
+    String name = "Shriya";
 
-    UserThird() {
+    UserTwo() {
 
         f.setLayout(null);
 
         JPanel p1 = new JPanel();
-        p1.setBackground(new Color(5, 35, 54));
+        p1.setBackground(new Color(4, 36, 56));
         p1.setBounds(0, 0, 450, 70);
         p1.setLayout(null);
         f.add(p1);
@@ -85,7 +84,7 @@ public class UserThird implements ActionListener, Runnable {
             }
         });
 
-        JLabel status = new JLabel("Praveen, Shriya, Pranjal, Sudtida");
+        JLabel status = new JLabel("Pranjal, Praveen, Shriya, Sudtida");
         status.setBounds(110, 35, 160, 18);
         status.setForeground(Color.WHITE);
         status.setFont(new Font("SAN_SERIF", Font.BOLD, 14));
@@ -96,7 +95,7 @@ public class UserThird implements ActionListener, Runnable {
         a1.setBackground(Color.WHITE);
         f.add(a1);
 
-// Create a JScrollPane that contains a1 and configure it
+        // Create a JScrollPane that contains a1 and configure it
         JScrollPane scrollPane = new JScrollPane(a1);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -104,6 +103,7 @@ public class UserThird implements ActionListener, Runnable {
         scrollPane.setBorder(null);
 
         f.add(scrollPane);  // Add the scroll pane to the frame instead of a1 directly
+
 
         text = new UserOne.PlaceholderTextField("Enter your message");
         text.setBounds(5, 655, 281, 40);
@@ -124,11 +124,12 @@ public class UserThird implements ActionListener, Runnable {
         f.add(send);
 
         f.setSize(450, 700);
-        f.setLocation(950, 50);
+        f.setLocation(490, 50);
         f.setUndecorated(true);
         f.getContentPane().setBackground(Color.WHITE);
 
         f.setVisible(true);
+
 
         String username = JOptionPane.showInputDialog(f, "Enter your username:");
 
@@ -138,6 +139,8 @@ public class UserThird implements ActionListener, Runnable {
 
         char[] passwordChars = passwordField.getPassword();
         String password = new String(passwordChars);
+//        String password = JOptionPane.showInputDialog(f, "Enter your password:");
+
 
         if (UserAuthentication.authenticate(username, password)) {
             try {
@@ -178,7 +181,9 @@ public class UserThird implements ActionListener, Runnable {
 
 
             String out = "<html><p>" + name + "</p><p>" + text.getText() + "</p></html>";
-            flag3 = "3";
+//            System.out.println(out);
+            flag2 = "2";
+//            System.out.println(out);
             JPanel p2 = formatLabel(out);
 
             a1.setLayout(new BorderLayout());
@@ -214,9 +219,8 @@ public class UserThird implements ActionListener, Runnable {
         panel.setBackground(Color.WHITE);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-//        JLabel output = new JLabel("<html><p style=\"width: 150px\">" + out + "</p></html>");
         JLabel output = new JLabel(out);
-        output.setFont(Font.getFont("Segoe UI Emoji"));
+        output.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
         output.setBackground(new Color(32, 97, 121));
         output.setForeground(Color.WHITE);
         output.setOpaque(true);
@@ -237,21 +241,23 @@ public class UserThird implements ActionListener, Runnable {
 
     public void run() {
         try {
-
             String msg = "";
             while(true) {
                 msg = reader.readLine();
-                if (flag3 == "3") {
-                    flag3 = "";
+                System.out.println("Message" + msg);
+                if (flag2 == "2") {
+                    flag2 = "";
                     continue;
                 }
-
                 getMessage(formatLabel(msg), vertical, a1, f, msg);
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     static void getMessage(JPanel jPanel, Box vertical, JPanel a1, JFrame f, String msg) {
         JPanel panel = jPanel;
@@ -263,19 +269,17 @@ public class UserThird implements ActionListener, Runnable {
 
         a1.add(vertical, BorderLayout.PAGE_START);
 
-        //NEWLY ADDED FOR ALIGNMENT
-        vertical.setAlignmentY(Component.TOP_ALIGNMENT);
-
         f.repaint();
         f.invalidate();
         f.validate();
     }
 
     public static void main(String[] args) {
-        UserThird third = new UserThird();
-        Thread t1 = new Thread(third);
+        UserTwo two = new UserTwo();
+        Thread t1 = new Thread(two);
         t1.start();
     }
+
     static class PlaceholderTextField extends JTextField {
         private String placeholder;
 
@@ -295,6 +299,4 @@ public class UserThird implements ActionListener, Runnable {
             }
         }
     }
-
 }
-
