@@ -222,6 +222,7 @@ public class UserTwo implements ActionListener, Runnable {
         JLabel output = new JLabel(out);
         output.setFont(Font.getFont("Segoe UI Emoji"));
         output.setBackground(new Color(32, 97, 121));
+        output.setForeground(Color.WHITE);
         output.setOpaque(true);
         output.setBorder(new EmptyBorder(10, 15, 10, 40));
 
